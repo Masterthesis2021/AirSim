@@ -123,6 +123,11 @@ public:
 		{
 			remoteaddr.sin_port = 0;
 		}
+		
+		struct timeval tv;
+        tv.tv_sec = 1.0;
+        tv.tv_usec = 0;
+        setsockopt(sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 
 		// bind socket to local address.
 		socklen_t addrlen = sizeof(sockaddr_in);
